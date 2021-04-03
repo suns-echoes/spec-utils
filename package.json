@@ -1,0 +1,39 @@
+{
+  "name": "spec-utils",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "check": "npm run ts && npm run lint && npm run test",
+    "ts": "tsc",
+    "lint": "eslint .",
+    "test": "node -r esm src/test.js",
+    "test:dist": "node -r esm dist/cjs/test.js",
+    "dist": "node -r esm scripts/dist",
+    "release": "npm run dist && cd dist && echo Login to NPM: && npm login && npm publish --access public && npm logout",
+    "release:priv": "npm run dist && cd dist && echo Login to NPM: && npm login && npm publish --access restricted && npm logout"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suns-echoes/spec-utils.git"
+  },
+  "author": "Aneta Suns <suns.echoes@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suns-echoes/spec-utils/issues"
+  },
+  "homepage": "https://github.com/suns-echoes/spec-utils#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/eslint-parser": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@suns-echoes/exec": "^0.2.0",
+    "@suns-echoes/file-system-utils": "^0.10.1",
+    "@suns-echoes/transform-esm-into-cjs": "^0.2.0",
+    "eslint": "^7.23.0",
+    "esm": "^3.2.25",
+    "rollup": "^2.44.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
