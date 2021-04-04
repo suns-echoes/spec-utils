@@ -6,26 +6,23 @@ export function toEqual(value, _sub = false) {
 	let result = false;
 
 	if (Object.is(this.value, value)) {
-		// @ts-ignore
 		result = true;
 	}
-
-	if (typeof this.value !== 'object' || typeof value !== 'object') {
-		// @ts-ignore
+	else if (typeof this.value !== 'object' || typeof value !== 'object') {
 		result = false;
 	}
+	else {
+		const keys1 = Object.keys(this.value);
+		const keys2 = Object.keys(value);
 
-	const keys1 = Object.keys(this.value);
-	const keys2 = Object.keys(value);
+		if (keys1.length !== keys2.length) {
+			result = false;
+		}
 
-	if (keys1.length !== keys2.length) {
-		// @ts-ignore
-		result = false;
+		const allKeys = [...new Set([...keys1, ...keys2])];
+
+		result = allKeys.every((key) => toEqual.call({ value: this.value[key], not: this.not }, value[key], true));
 	}
-
-	const allKeys = [...new Set([...keys1, ...keys2])];
-
-	result = allKeys.every((key) => toEqual.call(this.value[key], value[key]), true);
 
 	if (_sub) {
 		return result;

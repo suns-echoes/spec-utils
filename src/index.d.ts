@@ -21,6 +21,7 @@ interface ExpectToBe {
 	falsy: () => boolean;
 	function: () => boolean;
 	instance: { of: (value: any) => boolean };
+	NaN: () => boolean;
 	null: () => boolean;
 	number: () => boolean;
 	object: () => boolean;
@@ -32,6 +33,7 @@ interface ExpectToBe {
 
 interface ExpectToHave {
 	(value: string[]): boolean;
+	length: (value: number) => boolean;
 	methods: (value: string[]) => boolean;
 	properties: (value: string[]) => boolean;
 }
