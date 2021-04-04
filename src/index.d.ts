@@ -19,7 +19,7 @@ interface ExpectToBe {
 	false: () => boolean;
 	falsy: () => boolean;
 	function: () => boolean;
-	instance: (value: any) => boolean;
+	instance: { of: (value: any) => boolean };
 	null: () => boolean;
 	number: () => boolean;
 	object: () => boolean;

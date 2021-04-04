@@ -1,6 +1,6 @@
 {
-  "name": "spec-utils",
-  "version": "0.0.1",
+  "name": "@suns-echoes/spec-utils",
+  "version": "0.0.2",
   "description": "",
   "scripts": {
     "check": "npm run ts && npm run lint && npm run test",
