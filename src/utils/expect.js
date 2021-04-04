@@ -1,3 +1,4 @@
+import { toBeArray } from './to-be-array.js';
 import { toBeContainedIn } from './to-be-contained-in.js';
 import { toBeDefined } from './to-be-defined.js';
 import { toBeFalse } from './to-be-false.js';
@@ -26,6 +27,7 @@ export function expect(value) {
 	const _notToBe = toBe.bind({ value, not: true });
 	const _notToHave = toHave.bind({ value, not: true });
 
+	_toBe.array = toBeArray.bind({ value }),
 	_toBe.contained = { in: toBeContainedIn.bind({ value }) },
 	_toBe.defined = toBeDefined.bind({ value }),
 	_toBe.false = toBeFalse.bind({ value });
@@ -42,6 +44,7 @@ export function expect(value) {
 	_toHave.methods = toHaveMethods.bind({ value });
 	_toHave.properties = toHaveProperties.bind({ value });
 
+	_notToBe.array = toBeArray.bind({ value, not: true  }),
 	_notToBe.contained = { in: toBeContainedIn.bind({ value, not: true }) };
 	_notToBe.defined = toBeDefined.bind({ value, not: true  }),
 	_notToBe.false = toBeFalse.bind({ value, not: true });

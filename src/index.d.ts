@@ -14,6 +14,7 @@ interface TestFunction {
 
 interface ExpectToBe {
 	(value: any): boolean;
+	array: () => boolean;
 	contained: { in: (value: any[]) => boolean };
 	defined: () => boolean;
 	false: () => boolean;
