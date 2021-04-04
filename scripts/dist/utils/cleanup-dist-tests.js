@@ -3,5 +3,5 @@ import { config } from '../config';
 
 
 export async function cleanupDistTests() {
-	await remove(config.paths.dist, /\btest\.(html|js)$/);
+	await remove(config.paths.dist, /(\btest\.(html|js)|\.spec\.js)$/);
 }

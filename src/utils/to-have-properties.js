@@ -2,7 +2,7 @@ import { log } from '../spec-utils.js';
 
 
 export function toHaveProperties(value) {
-	if (typeof this.value !== 'object' || this.value === null) {
+	if (!(this.value instanceof Object)) {
 		throw `${this.not ? 'not ' : ''}to have properties failed`;
 	}
 

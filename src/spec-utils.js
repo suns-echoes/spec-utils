@@ -54,7 +54,7 @@ export const log = {
 	},
 };
 
-export function describe(description, callback) {
+export async function describe(description, callback) {
 	const previousEntries = log.entries;
 	const previousError = log.error;
 
@@ -62,7 +62,12 @@ export function describe(description, callback) {
 	log.error = false;
 	log.level++;
 
-	callback();
+	if (callback.constructor.name === 'AsyncFunction') {
+		await callback();
+	}
+	else {
+		callback();
+	}
 
 	if (--log.level === 0) {
 		log.entries = [
@@ -85,14 +90,19 @@ export function describe(description, callback) {
 	log.error = previousError || log.error;
 }
 
-export function it(description, callback) {
+export async function it(description, callback) {
 	const previousEntries = log.entries;
 	const previousError = log.error;
 
 	log.entries = [];
 	log.error = false;
 
-	callback();
+	if (callback.constructor.name === 'AsyncFunction') {
+		await callback();
+	}
+	else {
+		callback();
+	}
 
 	log.entries = [
 		...previousEntries,
